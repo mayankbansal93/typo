@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">TYPO</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_alphabets">Alphabets</string>
+    <string name="title_activity_digits">Digits</string>
+    <string name="title_activity_stats">Stats</string>
+    <string name="title_activity_select_type">TYPO</string>
+    <string name="title_activity_alphabet_start">Alphabets</string>
+    <string name="title_activity_digit_start">Digits</string>
+
+    <style name="ButtonText">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+</resources>

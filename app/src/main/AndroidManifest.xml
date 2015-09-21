@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mayank.alphabets" >
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        >
+        <activity
+            android:name="my.example.mayank.alphabets.MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="my.example.mayank.alphabets.Alphabets"
+            android:label="@string/title_activity_alphabets"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="my.example.mayank.alphabets.Digits"
+            android:label="@string/title_activity_digits"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="my.example.mayank.alphabets.Stats"
+            android:label="@string/title_activity_stats"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="my.example.mayank.alphabets.SelectType"
+            android:label="@string/title_activity_select_type"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="my.example.mayank.alphabets.AlphabetStart"
+            android:label="@string/title_activity_alphabet_start"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="my.example.mayank.alphabets.DigitStart"
+            android:label="@string/title_activity_digit_start"
+            android:screenOrientation="portrait">
+        </activity>
+    </application>
+
+</manifest>
