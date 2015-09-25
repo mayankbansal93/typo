@@ -7,12 +7,14 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +53,7 @@ public class Digits extends Activity {
     int id11=0,id21=0,id31=0;
     int count1=0;
     int n=0;
+    int height,width;
     AlertDialog.Builder adb;
     AlertDialog ad;
     int []a={
@@ -70,7 +73,7 @@ public class Digits extends Activity {
                 delay1=1;
             }
             h1.postDelayed(this, delay1);
-            if(iv.getY()>=1300){
+            if(iv.getY()>=height){
                 count1++;
                 heart.setVisibility(View.GONE);
                 if(!st.isEmpty())
@@ -97,7 +100,7 @@ public class Digits extends Activity {
                 }
                 n1=ran.nextInt(5)+n;
                 iv.setY(-300);
-                iv.setX(ran.nextInt(700) + 50);
+                iv.setX(ran.nextInt(width) + 50);
                 delay1=ran.nextInt(200);
             }
         }
@@ -110,7 +113,7 @@ public class Digits extends Activity {
                 delay2=1;
             }
             h2.postDelayed(this, delay2);
-            if(iv1.getY()>=1300){
+            if(iv1.getY()>=height){
                 count1++;
                 heart.setVisibility(View.GONE);
                 if(!st.isEmpty())
@@ -137,7 +140,7 @@ public class Digits extends Activity {
                 }
                 iv1.setY(-300);
                 n2=ran.nextInt(5)+n;
-                iv1.setX(ran.nextInt(700)+50);
+                iv1.setX(ran.nextInt(width)+50);
                 delay2=ran.nextInt(100);
             }
         }
@@ -151,7 +154,7 @@ public class Digits extends Activity {
                 delay3=1;
             }
             h3.postDelayed(this, delay3);
-            if(iv2.getY()>=1300){
+            if(iv2.getY()>=height){
                 count1++;
                 heart.setVisibility(View.GONE);
                 if(!st.isEmpty())
@@ -178,7 +181,7 @@ public class Digits extends Activity {
                 }
                 iv2.setY(-300);
                 n3=ran.nextInt(5)+n;
-                iv2.setX(ran.nextInt(700)+50);
+                iv2.setX(ran.nextInt(width)+50);
                 delay3=ran.nextInt(100);
             }
         }
@@ -191,11 +194,23 @@ public class Digits extends Activity {
         InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         mp=MediaPlayer.create(getApplicationContext(),R.raw.tap);
+        Display d=getWindowManager().getDefaultDisplay();
+        Point p=new Point();
+        d.getSize(p);
+        width=(int)(p.x*((double)7/10));
+        height=(int)((p.y)*((double)12/19));
+
         //    mp=MediaPlayer.create(getApplicationContext(),R.raw.music);
         //    mp.setLooping(true);
         //    mp.start();
         et = (EditText) findViewById(R.id.et1);
         tv = (TextView) findViewById(R.id.tv1);
+        RelativeLayout.LayoutParams ll=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams ll1=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ll.setMargins(0,(int)(height*((double)5/9)),0,0);
+        et.setLayoutParams(ll);
+        ll1.setMargins((int) (width), 0, 0, 0);
+        tv.setLayoutParams(ll1);
         st.push(R.id.h1);
         st.push(R.id.h2);
         st.push(R.id.h3);
@@ -223,7 +238,7 @@ public class Digits extends Activity {
             iv.setImageBitmap(i3);
         }
         rl.addView(iv);
-        iv.setX(ran.nextInt(700) + 50);
+        iv.setX(ran.nextInt(width) + 50);
         iv.setY(-300);
         h1 = new Handler();
         h1.post(r);
@@ -248,7 +263,7 @@ public class Digits extends Activity {
             iv1.setImageBitmap(i3);
         }
         rl.addView(iv1);
-        iv1.setX(ran.nextInt(700) + 50);
+        iv1.setX(ran.nextInt(width) + 50);
         iv1.setY(-300);
         h2 = new Handler();
         h2.postDelayed(r1, 4000);
@@ -273,7 +288,7 @@ public class Digits extends Activity {
             iv2.setImageBitmap(i3);
         }
         rl.addView(iv2);
-        iv2.setX(ran.nextInt(700) + 50);
+        iv2.setX(ran.nextInt(width) + 50);
         iv2.setY(-300);
         h3 = new Handler();
         h3.postDelayed(r2, 7000);
@@ -500,7 +515,7 @@ public class Digits extends Activity {
         iv.setImageResource(id1);
         n1 = ran.nextInt(5)+n;
         iv.setY(-300);
-        iv.setX(ran.nextInt(700) + 50);
+        iv.setX(ran.nextInt(width) + 50);
         delay1 = ran.nextInt(200);
         count++;
         tv.setText(Integer.toString(count));
@@ -514,7 +529,7 @@ public class Digits extends Activity {
         iv1.setImageResource(id2);
         iv1.setY(-300);
         n2 = ran.nextInt(5)+n;
-        iv1.setX(ran.nextInt(700) + 50);
+        iv1.setX(ran.nextInt(width) + 50);
         delay2 = ran.nextInt(100);
         count++;
         tv.setText(Integer.toString(count));
@@ -528,7 +543,7 @@ public class Digits extends Activity {
         iv2.setImageResource(id3);
         iv2.setY(-300);
         n3 = ran.nextInt(5)+n;
-        iv2.setX(ran.nextInt(700) + 50);
+        iv2.setX(ran.nextInt(width) + 50);
         delay3 = ran.nextInt(100);
         count++;
         tv.setText(Integer.toString(count));
@@ -549,7 +564,7 @@ public class Digits extends Activity {
         iv.setImageBitmap(i3);
         n1 = ran.nextInt(5)+n;
         iv.setY(-300);
-        iv.setX(ran.nextInt(700) + 50);
+        iv.setX(ran.nextInt(width) + 50);
         delay1 = ran.nextInt(200);
         count++;
         tv.setText(Integer.toString(count));
@@ -570,7 +585,7 @@ public class Digits extends Activity {
         iv1.setImageBitmap(i3);
         iv1.setY(-300);
         n2 = ran.nextInt(5)+n;
-        iv1.setX(ran.nextInt(700) + 50);
+        iv1.setX(ran.nextInt(width) + 50);
         delay2 = ran.nextInt(100);
         count++;
         tv.setText(Integer.toString(count));
@@ -591,7 +606,7 @@ public class Digits extends Activity {
         iv2.setImageBitmap(i3);
         iv2.setY(-300);
         n3 = ran.nextInt(5)+n;
-        iv2.setX(ran.nextInt(700) + 50);
+        iv2.setX(ran.nextInt(width) + 50);
         delay3 = ran.nextInt(100);
         count++;
         tv.setText(Integer.toString(count));

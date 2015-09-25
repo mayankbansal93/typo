@@ -3,12 +3,16 @@ package my.example.mayank.alphabets;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Point;
+
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,14 +48,22 @@ public class Alphabets extends Activity {
     int id1,id2,id3;
     int count1=0;
     int n=0;
+    int height,width;
     Boolean check;
     AlertDialog.Builder adb;
     AlertDialog ad;
     int []a={
-            R.drawable.a,R.drawable.b,R.drawable.c, R.drawable.d,R.drawable.e,R.drawable.f,R.drawable.g,
-            R.drawable.h,R.drawable.i,R.drawable.j,R.drawable.k,R.drawable.l,R.drawable.m,R.drawable.n,
-            R.drawable.o,R.drawable.p,R.drawable.q,R.drawable.r,R.drawable.s,R.drawable.t,R.drawable.u,
-            R.drawable.v,R.drawable.w,R.drawable.x,R.drawable.y,R.drawable.z
+            R.drawable.a,R.drawable.b,R.drawable.c,
+            R.drawable.d,R.drawable.e,R.drawable.f,
+            R.drawable.g,
+            R.drawable.h,R.drawable.i,R.drawable.j,
+            R.drawable.k,R.drawable.l,R.drawable.m,
+            R.drawable.n,
+            R.drawable.o,R.drawable.p,R.drawable.q,
+            R.drawable.r,R.drawable.s,R.drawable.t,
+            R.drawable.u,
+            R.drawable.v,R.drawable.w,R.drawable.x,
+            R.drawable.y,R.drawable.z
     };
     Stack<Integer> st=new Stack<>();
     Handler h1,h2,h3;
@@ -65,7 +77,7 @@ public class Alphabets extends Activity {
                 delay1=1;
             }
             h1.postDelayed(this, delay1);
-            if(iv.getY()>=1000){
+            if(iv.getY()>=height){
                 count1++;
                 heart.setVisibility(View.GONE);
                 if(!st.isEmpty())
@@ -80,7 +92,7 @@ public class Alphabets extends Activity {
                 iv.setImageResource(id1);
                 n1=ran.nextInt(5)+n;
                 iv.setY(-150);
-                iv.setX(ran.nextInt(700) + 50);
+                iv.setX(ran.nextInt(width) + 50);
                 delay1=ran.nextInt(200);
             }
         }
@@ -93,7 +105,7 @@ public class Alphabets extends Activity {
                 delay2=1;
             }
             h2.postDelayed(this, delay2);
-            if(iv1.getY()>=1000){
+            if(iv1.getY()>=height){
                 count1++;
                 heart.setVisibility(View.GONE);
                 if(!st.isEmpty())
@@ -108,7 +120,7 @@ public class Alphabets extends Activity {
                 iv1.setImageResource(id2);
                 iv1.setY(-150);
                 n2=ran.nextInt(5)+n;
-                iv1.setX(ran.nextInt(700)+50);
+                iv1.setX(ran.nextInt(width)+50);
                 delay2=ran.nextInt(100);
             }
         }
@@ -122,7 +134,7 @@ public class Alphabets extends Activity {
                 delay3=1;
             }
             h3.postDelayed(this, delay3);
-            if(iv2.getY()>=1000){
+            if(iv2.getY()>=height){
                 count1++;
                 heart.setVisibility(View.GONE);
                 if(!st.isEmpty())
@@ -137,7 +149,7 @@ public class Alphabets extends Activity {
                 iv2.setImageResource(id3);
                 iv2.setY(-150);
                 n3=ran.nextInt(5)+n;
-                iv2.setX(ran.nextInt(700)+50);
+                iv2.setX(ran.nextInt(width)+50);
                 delay3=ran.nextInt(100);
             }
         }
@@ -147,12 +159,23 @@ public class Alphabets extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alphabets);
         et=(EditText)findViewById(R.id.et1);
+        RelativeLayout.LayoutParams ll=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams ll1=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         tv=(TextView)findViewById(R.id.tv1);
         st.push(R.id.h1);
         st.push(R.id.h2);
         st.push(R.id.h3);
         st.push(R.id.h4);
         heart=(ImageView)findViewById(R.id.h5);
+        Display d=getWindowManager().getDefaultDisplay();
+        Point p=new Point();
+        d.getSize(p);
+        width=(int)(p.x*((double)7/10));
+        height=(int)((p.y)*((double)12/19));
+        ll.setMargins(0,(int)(height*((double)5/9)),0,0);
+        et.setLayoutParams(ll);
+        ll1.setMargins((int) (width), 0, 0, 0);
+        tv.setLayoutParams(ll1);
 
         iv=new ImageView(getApplicationContext());
         rl=(RelativeLayout)findViewById(R.id.rl);
@@ -160,7 +183,7 @@ public class Alphabets extends Activity {
         id1=a[ran.nextInt(26)];
         iv.setImageResource(id1);
         rl.addView(iv);
-        iv.setX(ran.nextInt(700) + 50);
+        iv.setX(ran.nextInt(width) + 50);
         iv.setY(-200);
         h1=new Handler();
         h1.post(r);
@@ -170,7 +193,7 @@ public class Alphabets extends Activity {
         id2=a[ran.nextInt(26)];
         iv1.setImageResource(id2);
         rl.addView(iv1);
-        iv1.setX(ran.nextInt(700) + 50);
+        iv1.setX(ran.nextInt(width)+ 50);
         iv1.setY(-200);
         h2=new Handler();
         h2.postDelayed(r1, 4000);
@@ -180,7 +203,7 @@ public class Alphabets extends Activity {
         id3=a[ran.nextInt(26)];
         iv2.setImageResource(id3);
         rl.addView(iv2);
-        iv2.setX(ran.nextInt(700) + 50);
+        iv2.setX(ran.nextInt(width)+ 50);
         iv2.setY(-200);
         h3=new Handler();
         h3.postDelayed(r2, 7000);
@@ -353,7 +376,7 @@ public class Alphabets extends Activity {
         iv.setImageResource(id1);
         n1=ran.nextInt(5)+n;
         iv.setY(-150);
-        iv.setX(ran.nextInt(700) + 50);
+        iv.setX(ran.nextInt(width) + 50);
         delay1=ran.nextInt(200);
         count++;
         tv.setText(Integer.toString(count));
@@ -367,7 +390,7 @@ public class Alphabets extends Activity {
         iv1.setImageResource(id2);
         iv1.setY(-150);
         n2=ran.nextInt(5)+n;
-        iv1.setX(ran.nextInt(700) + 50);
+        iv1.setX(ran.nextInt(width) + 50);
         delay2=ran.nextInt(100);
         count++;
         tv.setText(Integer.toString(count));
@@ -381,7 +404,7 @@ public class Alphabets extends Activity {
         iv2.setImageResource(id3);
         iv2.setY(-150);
         n3=ran.nextInt(5)+n;
-        iv2.setX(ran.nextInt(700) + 50);
+        iv2.setX(ran.nextInt(width)+ 50);
         delay3=ran.nextInt(100);
         count++;
         tv.setText(Integer.toString(count));

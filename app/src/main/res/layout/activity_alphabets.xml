@@ -56,14 +56,12 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
         android:padding="10dp"
         android:id="@+id/et1"
         android:textSize="26dp"
         android:textStyle="bold"
         android:textColor="#ffffff"
         android:minWidth="150dp"
-        android:hint="Alphabets"
         android:imeOptions="actionDone"
         android:inputType="textCapCharacters|textNoSuggestions">
         </EditText>
@@ -73,7 +71,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv1"
         android:hint="Score"
-        android:layout_marginLeft="260dp"
         android:textColorHint="#ffffff"
         android:textSize="24dp"
         android:textColor="#ffffff" />
